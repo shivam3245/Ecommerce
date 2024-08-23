@@ -42,7 +42,7 @@ const Cart = ({ setShowCart }) => {
         </div>
 
         <button className=" bg-ExtraDarkColor text-white w-full py-2 font-medium">
-          Proceed to Buy
+          Proceewd to Buy
         </button>
         <button className=" border-2 border-DarkColor text-black w-full my-2 py-2">
           Go to cart

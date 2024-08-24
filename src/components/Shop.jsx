@@ -58,7 +58,7 @@ const Shop = () => {
     autoplay: true,
     autoplaySpeed: 2000,
     pauseOnHover: true,
-    arrows: false,
+    arrows: true,
     responsive: [
       {
         breakpoint: 1023,
@@ -93,7 +93,7 @@ const Shop = () => {
       {/* heading section */}
       <div>
         <h1 className=" font-semibold text-4xl text-center text-ExtraDarkColor">
-          Best sellers
+          Shop Latest trends
         </h1>
       </div>
 

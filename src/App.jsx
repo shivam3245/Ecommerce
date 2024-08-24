@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Shop from "./components/Shop";
-import Features from "./components/Features";
 import Review from "./components/Review";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Cart from "./components/Cart";
-import Products from "./components/Products";
 import Collections from "./components/Collections";
 import Footer from "./components/Footer";
+import ExclusiveProducts from "./components/ExclusiveProducts";
+import NewArrivals from "./components/NewArrivals";
 
 const App = () => {
   const [showCart, setShowCart] = useState(false);
@@ -32,12 +32,12 @@ const App = () => {
 
         <Collections />
 
-        <div id="features">
-          <Features />
+        <div id="ExclusiveProducts">
+          <ExclusiveProducts />
         </div>
 
-        <div id="products">
-          <Products />
+        <div id="NewArrivals">
+          <NewArrivals />
         </div>
 
         <div id="review">

@@ -28,23 +28,23 @@ const Navbar = ({ setShowCart }) => {
     <header className=" fixed w-full z-10">
       <section>
         {/* desktop menu section  */}
-        <div className=" flex flex-row justify-between p-5 md:px-32 px-5 bg-PrimaryColor shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
+        <div className=" flex flex-row justify-between p-5 md:px-32 px-5 bg-black shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
           <div>
             <Link to="home" spy={true} smooth={true} duration={500}>
-              <h1 className=" text-2xl font-semibold text-ExtraDarkColor cursor-pointer">
-                StyleNestle
+              <h1 className=" text-2xl font-semibold text-white cursor-pointer">
+                FashionNest
               </h1>
             </Link>
           </div>
 
           {/* nav elements */}
-          <nav className=" hidden lg:flex flex-row items-center text-lg font-semibold gap-8 text-ExtraDarkColor">
+          <nav className=" hidden lg:flex flex-row items-center text-lg font-semibold gap-8 text-DarkColor">
             <Link
               to="home"
               spy={true}
               smooth={true}
               duration={500}
-              className=" hover:text-black transition duration-300 ease-in-out cursor-pointer"
+              className=" hover:text-white transition duration-300 ease-in-out cursor-pointer"
             >
               Home
             </Link>
@@ -53,34 +53,34 @@ const Navbar = ({ setShowCart }) => {
               spy={true}
               smooth={true}
               duration={500}
-              className=" hover:text-black transition duration-300 ease-in-out cursor-pointer"
+              className=" hover:text-white transition duration-300 ease-in-out cursor-pointer"
             >
               Shop
             </Link>
             <Link
-              to="features"
+              to="ExclusiveProducts"
               spy={true}
               smooth={true}
               duration={500}
-              className=" hover:text-black transition duration-300 ease-in-out cursor-pointer"
+              className=" hover:text-white transition duration-300 ease-in-out cursor-pointer"
             >
-              Features
+              Exclusive Products
             </Link>
             <Link
-              to="products"
+              to="NewArrivals"
               spy={true}
               smooth={true}
               duration={500}
-              className=" hover:text-black transition duration-300 ease-in-out cursor-pointer"
+              className=" hover:text-white transition duration-300 ease-in-out cursor-pointer"
             >
-              Products
+              New Arrivals
             </Link>
             <Link
               to="review"
               spy={true}
               smooth={true}
               duration={500}
-              className=" hover:text-black transition duration-300 ease-in-out cursor-pointer"
+              className=" hover:text-white transition duration-300 ease-in-out cursor-pointer"
             >
               Review
             </Link>
@@ -88,11 +88,11 @@ const Navbar = ({ setShowCart }) => {
 
           {/* nav icons */}
           <div className="flex items-center gap-5">
-            <FaUser size={25} className=" text-DarkColor" />
+            <FaUser size={25} className=" text-DarkColor hover:text-white" />
             <div className=" text-DarkColor relative">
               <FaShoppingCart
                 size={25}
-                className=" cursor-pointer"
+                className=" cursor-pointer hover:text-white"
                 onClick={() => setShowCart(true)}
               />
               <div className=" absolute top-[-15px] right-[-10px] bg-red-600 w-[22px] h-[20px] rounded-full text-white text-sm grid place-items-center">
@@ -113,9 +113,8 @@ const Navbar = ({ setShowCart }) => {
 
         {/* mobile menu section */}
         <div
-          className={`${
-            menu ? "translate-x-0" : "-translate-x-full"
-          } lg:hidden flex flex-col absolute bg-SecondaryColor text-black left-0 top-16 font-semibold text-2xl text-center pt-8 pb-4 gap-8 w-full h-fit transition-transform duration-300`}
+          className={`${menu ? "translate-x-0" : "-translate-x-full"
+            } lg:hidden flex flex-col absolute bg-SecondaryColor text-black left-0 top-16 font-semibold text-2xl text-center pt-8 pb-4 gap-8 w-full h-fit transition-transform duration-300`}
         >
           <Link
             to="home"

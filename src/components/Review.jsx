@@ -3,7 +3,7 @@ import ReviewCard from "../layouts/ReviewCard";
 
 const Review = () => {
   return (
-    <div className=" min-h-screen flex flex-col justify-center lg:px-32 px-5">
+    <div className=" min-h-[80vh] flex flex-col justify-center lg:px-32 px-5">
 
       {/* heading section */}
       <h1 className=" font-semibold text-center text-ExtraDarkColor text-4xl lg:mt-14 mt-24 ">

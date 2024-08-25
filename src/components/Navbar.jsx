@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-scroll";
 import { FaUser } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { AiOutlineClose } from "react-icons/ai";
-import { RiMenu2Line } from "react-icons/ri";
+import { MdOutlineMenu } from "react-icons/md";
+import { IoClose } from "react-icons/io5";
 import { useAppSelector } from "../redux/hooks";
+import AuthPage from "./AuthPage";
 
 const Navbar = ({ setShowCart }) => {
-
-  // functions for handling menu section in react
-
   const [menu, setMenu] = useState(false);
+  const [showAuthPage, setShowAuthPage] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
 
   const handleChange = () => {
     setMenu(!menu);
@@ -20,152 +21,130 @@ const Navbar = ({ setShowCart }) => {
     setMenu(false);
   };
 
+  const openAuthPage = () => {
+    setShowAuthPage(true);
+  };
 
-  // redux logic 
+  const closeAuthPage = () => {
+    setShowAuthPage(false);
+  };
+
+  const handleLogin = (name) => {
+    setIsLoggedIn(true);
+    setUsername(name);
+    closeAuthPage();
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUsername("");
+  };
+
   const cartCount = useAppSelector((state) => state.cartReducer.length);
 
   return (
-    <header className=" fixed w-full z-10">
+    <header className="fixed w-full z-10">
       <section>
-        {/* desktop menu section  */}
-        <div className=" flex flex-row justify-between p-5 md:px-32 px-5 bg-black shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
+        {/* Desktop Menu Section */}
+        <div className="flex flex-row justify-between p-5 md:px-32 px-5 bg-black shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
           <div>
             <Link to="home" spy={true} smooth={true} duration={500}>
-              <h1 className=" text-2xl font-semibold text-white cursor-pointer">
+              <h1 className="text-2xl font-semibold text-white cursor-pointer">
                 FashionNest
               </h1>
             </Link>
           </div>
 
-          {/* nav elements */}
-          <nav className=" hidden lg:flex flex-row items-center text-lg font-semibold gap-8 text-DarkColor">
-            <Link
-              to="home"
-              spy={true}
-              smooth={true}
-              duration={500}
-              className=" hover:text-white transition duration-300 ease-in-out cursor-pointer"
-            >
-              Home
-            </Link>
-            <Link
-              to="shop"
-              spy={true}
-              smooth={true}
-              duration={500}
-              className=" hover:text-white transition duration-300 ease-in-out cursor-pointer"
-            >
-              Shop
-            </Link>
-            <Link
-              to="ExclusiveProducts"
-              spy={true}
-              smooth={true}
-              duration={500}
-              className=" hover:text-white transition duration-300 ease-in-out cursor-pointer"
-            >
-              Exclusive Products
-            </Link>
-            <Link
-              to="NewArrivals"
-              spy={true}
-              smooth={true}
-              duration={500}
-              className=" hover:text-white transition duration-300 ease-in-out cursor-pointer"
-            >
-              New Arrivals
-            </Link>
-            <Link
-              to="review"
-              spy={true}
-              smooth={true}
-              duration={500}
-              className=" hover:text-white transition duration-300 ease-in-out cursor-pointer"
-            >
-              Review
-            </Link>
+          {/* Desktop Nav Elements */}
+          <nav className="hidden lg:flex flex-row items-center text-lg font-semibold gap-8 text-DarkColor">
+            {["home", "shop", "Exclusive Products", "New Arrivals", "review"].map((section, index) => (
+              <Link
+                key={index}
+                to={section}
+                spy={true}
+                smooth={true}
+                duration={500}
+                className="hover:text-white transition duration-300 ease-in-out cursor-pointer"
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </Link>
+            ))}
           </nav>
 
-          {/* nav icons */}
+          {/* Icons Section */}
           <div className="flex items-center gap-5">
-            <FaUser size={25} className=" text-DarkColor hover:text-white" />
-            <div className=" text-DarkColor relative">
+            <div className="flex items-center gap-2">
+              <FaUser
+                size={25}
+                onClick={openAuthPage}
+                className="cursor-pointer text-DarkColor"
+              />
+              {isLoggedIn ? (
+                <>
+                  <span className="text-sm font-medium text-white">
+                    {username}
+                  </span>
+                  <button
+                    onClick={handleLogout}
+                    className="text-sm text-blue-500 underline"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                showAuthPage && <AuthPage onClose={closeAuthPage} onLogin={handleLogin} />
+              )}
+            </div>
+            <div className="text-DarkColor relative">
               <FaShoppingCart
                 size={25}
-                className=" cursor-pointer hover:text-white"
+                className="cursor-pointer hover:text-white"
                 onClick={() => setShowCart(true)}
               />
-              <div className=" absolute top-[-15px] right-[-10px] bg-red-600 w-[22px] h-[20px] rounded-full text-white text-sm grid place-items-center">
+              <div className="absolute top-[-15px] right-[-10px] bg-red-600 w-[22px] h-[20px] rounded-full text-white text-sm grid place-items-center">
                 {cartCount}
               </div>
             </div>
           </div>
 
-          {/* menu icon */}
-          <div className=" lg:hidden flex items-center">
+          {/* Hamburger Menu Icon */}
+          <div className="lg:hidden md:hidden flex items-center">
             {menu ? (
-              <AiOutlineClose size={28} onClick={handleChange} />
+              <IoClose
+                size={28}
+                onClick={handleChange}
+                className="cursor-pointer text-white"
+              />
             ) : (
-              <RiMenu2Line size={28} onClick={handleChange} />
+              <MdOutlineMenu
+                size={28}
+                onClick={handleChange}
+                className="cursor-pointer text-white"
+              />
             )}
           </div>
         </div>
 
-        {/* mobile menu section */}
+        {/* Mobile Menu Section */}
         <div
-          className={`${menu ? "translate-x-0" : "-translate-x-full"
+          className={`${menu ? "translate-x-0" : "translate-x-full"
             } lg:hidden flex flex-col absolute bg-SecondaryColor text-black left-0 top-16 font-semibold text-2xl text-center pt-8 pb-4 gap-8 w-full h-fit transition-transform duration-300`}
         >
-          <Link
-            to="home"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className=" hover:text-DarkColor transition duration-300 ease-in-out cursor-pointer"
-            onClick={closeMenu}
-          >
-            Home
-          </Link>
-          <Link
-            to="shop"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className=" hover:text-DarkColor transition duration-300 ease-in-out cursor-pointer"
-            onClick={closeMenu}
-          >
-            Shop
-          </Link>
-          <Link
-            to="features"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className=" hover:text-DarkColor transition duration-300 ease-in-out cursor-pointer"
-            onClick={closeMenu}
-          >
-            Features
-          </Link>
-          <Link
-            to="products"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className=" hover:text-black transition duration-300 ease-in-out cursor-pointer"
-            onClick={closeMenu}
-          >
-            Products
-          </Link>
-          <Link
-            to="review"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className=" hover:text-DarkColor transition duration-300 ease-in-out cursor-pointer"
-            onClick={closeMenu}
-          >
-            Review
-          </Link>
+          {["home", "shop", "Exclusive Products", "New Arrivals", "review"].map(
+            (section, index) => (
+              <Link
+                key={index}
+                to={section}
+                spy={true}
+                smooth={true}
+                duration={500}
+                className="hover:text-DarkColor transition duration-300 ease-in-out cursor-pointer"
+                onClick={closeMenu}
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </Link>
+            )
+          )}
         </div>
       </section>
     </header>

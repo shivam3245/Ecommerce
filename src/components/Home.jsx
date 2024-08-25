@@ -1,9 +1,10 @@
 import React from "react";
 import img from "../assets/img/hero.png";
+import { Link } from "react-scroll";
 
 const Home = () => {
   return (
-    <div className=" min-h-screen flex flex-col justify-center lg:flex-row items-center lg:justify-between lg:px-32 px-5 pt-24 lg:pt-10 bg-red-300 bg-fixed bg-center bg-cover" >
+    <div className=" min-h-screen flex flex-col justify-center lg:flex-row items-center lg:justify-between lg:px-32 px-5 pt-24 lg:pt-10 bg-gradient-to-r from-gray-400 to-red-300 bg-fixed bg-center bg-cover" >
       {/* content section  */}
       <div className=" space-y-4">
         <h1 className=" text-5xl font-semibold leading-tight text-white w-full lg:w-3/4">
@@ -15,7 +16,9 @@ const Home = () => {
         </p>
 
         <button className=" bg-ExtraDarkColor text-white px-4 py-2 font-medium active:bg-amber-800">
-          shop now
+          <Link to="shop" spy={true} smooth={true} duration={500}>
+            Shop now
+          </Link>
         </button>
       </div>
 

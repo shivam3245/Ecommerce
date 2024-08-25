@@ -3,47 +3,57 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductCard from "../layouts/ProductCard";
+import product1 from '../assets/img/product1.jpg';
+import product2 from '../assets/img/product2.jpg';
+import product3 from '../assets/img/product3.jpg';
+import product4 from '../assets/img/product4.jpg';
+import product5 from '../assets/img/product5.jpg';
+import product6 from '../assets/img/product6.jpg';
+import ProductDetailsModal from "./ProductDetails";
+import { useState } from "react";
+
 
 const Shop = () => {
+  const [selectedProduct, setSelectedProduct] = useState(null); // State to hold the selected product
   const data = [
     {
       id: 0,
-      img: "/src/assets/img/product1.jpg",
+      img: product1,
       name: "Nike Air",
       price: "198.00",
       discount: "20% Off",
     },
     {
       id: 1,
-      img: "/src/assets/img/product2.jpg",
+      img: product2,
       name: "Sportswear Futura",
       price: "208.00",
       discount: "40% Off",
     },
     {
       id: 2,
-      img: "/src/assets/img/product3.jpg",
+      img: product3,
       name: "Royal Collection",
       price: "104.00",
       discount: "35% Off",
     },
     {
       id: 3,
-      img: "/src/assets/img/product4.jpg",
+      img: product4,
       name: "t-shirt combo pack",
       price: "299.00",
       discount: "40% Off",
     },
     {
       id: 4,
-      img: "/src/assets/img/product5.jpg",
+      img: product5,
       name: "CozyCraze Hoodies",
       price: "159.00",
       discount: "23% Off",
     },
     {
       id: 5,
-      img: "/src/assets/img/product6.jpg",
+      img: product6,
       name: "LuxeLoom Purses",
       price: "189.00",
       discount: "30% Off",
@@ -88,6 +98,15 @@ const Shop = () => {
     ],
   };
 
+  const handleProductClick = (product) => {
+    setSelectedProduct(product); // Set the selected product for details
+  };
+
+  const closeModal = () => {
+    setSelectedProduct(null); // Close the modal
+  };
+
+
   return (
     <div className=" min-h-screen flex flex-col justify-center lg:px-32 px-5 pt-14">
       {/* heading section */}
@@ -108,9 +127,15 @@ const Shop = () => {
               name={item.name}
               price={item.price}
               discount={item.discount}
+              onClick={() => handleProductClick(item)} // Pass click handler
             />
           ))}
         </Slider>
+        {/* Product Details Modal */}
+        <ProductDetailsModal
+          product={selectedProduct}
+          onClose={closeModal}
+        />
       </div>
     </div>
   );

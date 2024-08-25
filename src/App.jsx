@@ -32,11 +32,11 @@ const App = () => {
 
         <Collections />
 
-        <div id="ExclusiveProducts">
+        <div id="Exclusive Products">
           <ExclusiveProducts />
         </div>
 
-        <div id="NewArrivals">
+        <div id="New Arrivals">
           <NewArrivals />
         </div>
 
